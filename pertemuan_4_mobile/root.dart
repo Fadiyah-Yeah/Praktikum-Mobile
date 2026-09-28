@@ -12,7 +12,7 @@ class Root extends StatefulWidget {
 
 class _RootState extends State<Root> {
   int _selectedIndex = 0;
-  final List<String> _title = ["Home", "Profile"];
+  final List<String> _title = ["Rumah", "Profile"];
 
   @override
   Widget build(BuildContext context) {
