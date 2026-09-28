@@ -1,0 +1,64 @@
+dependencies:
+  flutter:
+    sdk: flutter
+  shared_preferences: ^2.5.3
+//di pubspec.yaml terus flutter pub get
+
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+class DetailPage extends StatefulWidget {
+  const DetailPage({super.key});
+
+  @override
+  State<DetailPage> createState() => _DetailPageState();
+}
+
+class _DetailPageState extends State<DetailPage> {
+  bool isLiked = false;
+
+  @override
+  void initState() {
+    super.initState();
+    loadLike();
+  }
+
+  Future<void> loadLike() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      isLiked = prefs.getBool('isLiked') ?? false;
+    });
+  }
+
+  Future<void> toggleLike() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      isLiked = !isLiked;
+    });
+
+    await prefs.setBool('isLiked', isLiked);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Detail'),
+        actions: [
+          IconButton(
+            onPressed: toggleLike,
+            icon: Icon(
+              isLiked ? Icons.favorite : Icons.favorite_border,
+              color: isLiked ? Colors.red : Colors.grey,
+            ),
+          ),
+        ],
+      ),
+      body: const Center(
+        child: Text('Detail Content'),
+      ),
+    );
+  }
+}
