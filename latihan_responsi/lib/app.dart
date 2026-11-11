@@ -1,10 +1,11 @@
-
 import 'package:flutter/material.dart';
 
 import 'style/app_theme.dart';
+
 import 'screen/splash_screen.dart';
 import 'screen/login_screen.dart';
 import 'screen/home_screen.dart';
+import 'screen/register_screen.dart';
 
 class RickMortyApp extends StatelessWidget {
   const RickMortyApp({super.key});
@@ -22,6 +23,8 @@ class RickMortyApp extends StatelessWidget {
 
       routes: {
         '/login': (context) => const LoginScreen(),
+        '/splash': (context) => const SplashScreen(),
+        '/register': (context) => const RegisterScreen(),
         '/home': (context) => const HomeScreen(),
       },
     );

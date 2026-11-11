@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -18,11 +17,9 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
 
   // Menyimpan input email dan password
-  final TextEditingController _emailController =
-      TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
 
-  final TextEditingController _passwordController =
-      TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   // Mengatur visibilitas password dan loading
   bool _isPasswordVisible = false;
@@ -51,17 +48,10 @@ class _LoginScreenState extends State<LoginScreen> {
       if (!mounted) return;
 
       // Menampilkan pesan ketika login berhasil
-      _showMessage(
-        'Login berhasil! Selamat datang.',
-      );
+      _showMessage('Login berhasil! Selamat datang.');
 
       // Mengarahkan pengguna ke Home dan menghapus riwayat navigasi
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        '/home',
-        (route) => false,
-      );
-
+      Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
     } on AuthException catch (e) {
       if (!mounted) return;
 
@@ -85,11 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
           message = e.message;
       }
 
-      _showMessage(
-        message,
-        isError: true,
-      );
-
+      _showMessage(message, isError: true);
     } catch (e) {
       if (!mounted) return;
 
@@ -98,7 +84,6 @@ class _LoginScreenState extends State<LoginScreen> {
         'Tidak dapat terhubung ke server. Periksa koneksi internetmu.',
         isError: true,
       );
-
     } finally {
       // Menghentikan loading setelah proses login selesai
       if (mounted) {
@@ -110,17 +95,13 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   // Menampilkan snackbar untuk informasi keberhasilan atau kesalahan
-  void _showMessage(
-    String message, {
-    bool isError = false,
-  }) {
+  void _showMessage(String message, {bool isError = false}) {
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
       ..showSnackBar(
         SnackBar(
           content: Text(message),
-          backgroundColor:
-              isError ? AppColors.error : AppColors.success,
+          backgroundColor: isError ? AppColors.error : AppColors.success,
           behavior: SnackBarBehavior.floating,
         ),
       );
@@ -135,16 +116,11 @@ class _LoginScreenState extends State<LoginScreen> {
     return InputDecoration(
       hintText: hint,
 
-      hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color: AppColors.textSecondary,
-          ),
+      hintStyle: Theme.of(context).textTheme.bodyMedium
+          ?.copyWith(color: AppColors.textSecondary),
 
       // Icon di bagian kiri input
-      prefixIcon: Icon(
-        icon,
-        size: 20,
-        color: AppColors.textPrimary,
-      ),
+      prefixIcon: Icon(icon, size: 20, color: AppColors.textPrimary),
 
       // Icon tambahan di bagian kanan input
       suffixIcon: suffixIcon,
@@ -153,51 +129,35 @@ class _LoginScreenState extends State<LoginScreen> {
       fillColor: AppColors.surface,
       isDense: true,
 
-      contentPadding: const EdgeInsets.symmetric(
-        horizontal: 14,
-        vertical: 13,
-      ),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 13),
 
       // Border default input
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(
-          color: AppColors.border,
-        ),
+        borderSide: const BorderSide(color: AppColors.border),
       ),
 
       // Border ketika input tidak aktif
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(
-          color: AppColors.border,
-          width: 1.2,
-        ),
+        borderSide: const BorderSide(color: AppColors.border, width: 1.2),
       ),
 
       // Border ketika input sedang digunakan
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(
-          color: AppColors.primaryDark,
-          width: 1.5,
-        ),
+        borderSide: const BorderSide(color: AppColors.primaryDark, width: 1.5),
       ),
 
       // Border ketika input mengalami kesalahan
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(
-          color: AppColors.error,
-        ),
+        borderSide: const BorderSide(color: AppColors.error),
       ),
 
       focusedErrorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(
-          color: AppColors.error,
-          width: 1.5,
-        ),
+        borderSide: const BorderSide(color: AppColors.error, width: 1.5),
       ),
     );
   }
@@ -232,10 +192,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   // Menampilkan karakter Rick dan Morty
-  Widget _buildCharacters(
-    double width,
-    double height,
-  ) {
+  Widget _buildCharacters(double width, double height) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -304,24 +261,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Column(
                         children: [
                           // Memberikan ruang untuk background landscape
-                          SizedBox(
-                            height: landscapeHeight - 5,
-                          ),
+                          SizedBox(height: landscapeHeight - 5),
 
                           // Menampilkan karakter di tengah halaman
-                          _buildCharacters(
-                            screenWidth,
-                            characterHeight,
-                          ),
+                          _buildCharacters(screenWidth, characterHeight),
 
                           const SizedBox(height: 5),
 
                           // Judul halaman login
                           Text(
                             'Login',
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineMedium
+                            style: Theme.of(context).textTheme.headlineMedium
                                 ?.copyWith(
                                   fontWeight: FontWeight.w900,
                                   color: AppColors.textPrimary,
@@ -333,17 +283,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           // Subtitle halaman login
                           Text(
                             'Masuk ke akunmu',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium
-                                ?.copyWith(
-                                  color: AppColors.textSecondary,
-                                ),
+                            style: Theme.of(context).textTheme.bodyMedium
+                                ?.copyWith(color: AppColors.textSecondary),
                           ),
 
-                          SizedBox(
-                            height: screenHeight * 0.035,
-                          ),
+                          SizedBox(height: screenHeight * 0.035),
 
                           // Form untuk memasukkan email dan password
                           Form(
@@ -353,20 +297,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                 // Input email
                                 TextFormField(
                                   controller: _emailController,
-                                  keyboardType:
-                                      TextInputType.emailAddress,
-                                  textInputAction:
-                                      TextInputAction.next,
-                                  autofillHints: const [
-                                    AutofillHints.email,
-                                  ],
+                                  keyboardType: TextInputType.emailAddress,
+                                  textInputAction: TextInputAction.next,
+                                  autofillHints: const [AutofillHints.email],
 
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(
-                                        color: AppColors.textPrimary,
-                                      ),
+                                  style: Theme.of(context).textTheme.bodyMedium
+                                      ?.copyWith(color: AppColors.textPrimary),
 
                                   decoration: _inputDecoration(
                                     hint: 'Email',
@@ -375,8 +311,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                                   // Memvalidasi format email
                                   validator: (value) {
-                                    if (value == null ||
-                                        value.trim().isEmpty) {
+                                    if (value == null || value.trim().isEmpty) {
                                       return 'Email wajib diisi';
                                     }
 
@@ -384,9 +319,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       r'^[^@]+@[^@]+\.[^@]+$',
                                     );
 
-                                    if (!emailRegex.hasMatch(
-                                      value.trim(),
-                                    )) {
+                                    if (!emailRegex.hasMatch(value.trim())) {
                                       return 'Format email tidak valid';
                                     }
 
@@ -400,11 +333,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 TextFormField(
                                   controller: _passwordController,
                                   obscureText: !_isPasswordVisible,
-                                  textInputAction:
-                                      TextInputAction.done,
-                                  autofillHints: const [
-                                    AutofillHints.password,
-                                  ],
+                                  textInputAction: TextInputAction.done,
+                                  autofillHints: const [AutofillHints.password],
 
                                   // Menjalankan login ketika tombol enter ditekan
                                   onFieldSubmitted: (_) {
@@ -413,12 +343,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                     }
                                   },
 
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(
-                                        color: AppColors.textPrimary,
-                                      ),
+                                  style: Theme.of(context).textTheme.bodyMedium
+                                      ?.copyWith(color: AppColors.textPrimary),
 
                                   decoration: _inputDecoration(
                                     hint: 'Password',
@@ -445,8 +371,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                                   // Memastikan password tidak kosong
                                   validator: (value) {
-                                    if (value == null ||
-                                        value.isEmpty) {
+                                    if (value == null || value.isEmpty) {
                                       return 'Password wajib diisi';
                                     }
 
@@ -454,9 +379,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   },
                                 ),
 
-                                SizedBox(
-                                  height: screenHeight * 0.025,
-                                ),
+                                SizedBox(height: screenHeight * 0.025),
 
                                 // Tombol untuk menjalankan proses login
                                 SizedBox(
@@ -464,20 +387,17 @@ class _LoginScreenState extends State<LoginScreen> {
                                   height: 48,
 
                                   child: ElevatedButton(
-                                    onPressed:
-                                        _isLoading ? null : _login,
+                                    onPressed: _isLoading ? null : _login,
 
                                     style: ElevatedButton.styleFrom(
-                                      backgroundColor:
-                                          AppColors.primaryDark,
+                                      backgroundColor: AppColors.primaryDark,
                                       foregroundColor: AppColors.white,
                                       disabledBackgroundColor:
                                           AppColors.primary,
                                       elevation: 0,
 
                                       shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(12),
+                                        borderRadius: BorderRadius.circular(12),
                                       ),
                                     ),
 
@@ -486,8 +406,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         ? const SizedBox(
                                             width: 21,
                                             height: 21,
-                                            child:
-                                                CircularProgressIndicator(
+                                            child: CircularProgressIndicator(
                                               strokeWidth: 2.5,
                                               color: AppColors.white,
                                             ),
@@ -499,8 +418,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 .titleMedium
                                                 ?.copyWith(
                                                   color: AppColors.white,
-                                                  fontWeight:
-                                                      FontWeight.w900,
+                                                  fontWeight: FontWeight.w900,
                                                 ),
                                           ),
                                   ),
@@ -517,27 +435,18 @@ class _LoginScreenState extends State<LoginScreen> {
                             children: [
                               Text(
                                 'Belum punya akun? ',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodySmall
-                                    ?.copyWith(
-                                      color: AppColors.textPrimary,
-                                    ),
+                                style: Theme.of(context).textTheme.bodySmall
+                                    ?.copyWith(color: AppColors.textPrimary),
                               ),
 
                               GestureDetector(
                                 onTap: () {
-                                  Navigator.pushNamed(
-                                    context,
-                                    '/register',
-                                  );
+                                  Navigator.pushNamed(context, '/register');
                                 },
 
                                 child: Text(
                                   'Daftar',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodySmall
+                                  style: Theme.of(context).textTheme.bodySmall
                                       ?.copyWith(
                                         color: AppColors.primaryDark,
                                         fontWeight: FontWeight.w900,
@@ -588,9 +497,7 @@ class _LandscapeClipper extends CustomClipper<Path> {
   }
 
   @override
-  bool shouldReclip(
-    covariant CustomClipper<Path> oldClipper,
-  ) {
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
     return false;
   }
 }
