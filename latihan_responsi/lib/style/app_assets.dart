@@ -4,7 +4,7 @@ class AppAssets {
 
   // Background
   static const String splashBackground =
-      'asset/images/splash_bg.png';
+      'asset/images/background.png';
 
   // Characters
   static const String rick =
