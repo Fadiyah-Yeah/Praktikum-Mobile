@@ -1,7 +1,12 @@
 
 class AppAssets {
   AppAssets._();
-  // PIXEL CHARACTERS
+
+  // Background
+  static const String splashBackground =
+      'asset/images/splash_bg.png';
+
+  // Characters
   static const String rick =
       'asset/characters/Rick.png';
 
@@ -20,17 +25,7 @@ class AppAssets {
   static const String blueAlien =
       'asset/characters/blue_alien.png';
 
-  // CHARACTER AVATARS
-  static const List<String> avatars = [
-    rick,
-    morty,
-    summer,
-    beth,
-    pickleRick,
-    blueAlien,
-  ];
-
-  // DECORATIONS
+  // Decorations
   static const String portal =
       'asset/images/Portal.png';
 
@@ -40,10 +35,13 @@ class AppAssets {
   static const String ufo =
       'asset/images/UFO.png';
 
-  // CHARACTER IMAGE LIST
-  static const List<String> decorations = [
-    portal,
-    tv,
-    ufo,
+  // Avatar collection
+  static const List<String> avatars = [
+    rick,
+    morty,
+    summer,
+    beth,
+    pickleRick,
+    blueAlien,
   ];
 }
