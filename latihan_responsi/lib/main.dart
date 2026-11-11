@@ -1,26 +1,20 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'app.dart';
-import 'style/app_config.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  if (AppConfig.supabaseUrl.isEmpty ||
-      AppConfig.supabaseKey.isEmpty) {
-    throw Exception(
-      'Supabase URL dan Publishable Key belum dikonfigurasi.',
-    );
-  }
+  // Membaca konfigurasi dari file .env
+  await dotenv.load(fileName: '.env');
 
+  // Menginisialisasi koneksi Supabase
   await Supabase.initialize(
-    url: AppConfig.supabaseUrl,
-    anonKey: AppConfig.supabaseKey,
+    url: dotenv.env['SUPABASE_URL']!,
+    publishableKey: dotenv.env['SUPABASE_KEY']!,
   );
 
-  runApp(
-    const RickMortyApp(),
-  );
+  runApp(const MyApp());
 }
