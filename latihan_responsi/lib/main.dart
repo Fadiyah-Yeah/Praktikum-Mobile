@@ -16,5 +16,5 @@ Future<void> main() async {
     publishableKey: dotenv.env['SUPABASE_KEY']!,
   );
 
-  runApp(const MyApp());
+  runApp(const RickMortyApp());
 }
