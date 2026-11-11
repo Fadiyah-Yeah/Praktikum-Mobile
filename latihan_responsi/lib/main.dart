@@ -1,16 +1,26 @@
+
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() {
-  runApp(const MainApp());
-}
+import 'app.dart';
+import 'style/app_config.dart';
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(body: Center(child: Text('Hello World!'))),
+  if (AppConfig.supabaseUrl.isEmpty ||
+      AppConfig.supabaseKey.isEmpty) {
+    throw Exception(
+      'Supabase URL dan Publishable Key belum dikonfigurasi.',
     );
   }
+
+  await Supabase.initialize(
+    url: AppConfig.supabaseUrl,
+    anonKey: AppConfig.supabaseKey,
+  );
+
+  runApp(
+    const RickMortyApp(),
+  );
 }
