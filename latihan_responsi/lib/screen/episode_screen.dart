@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,8 +17,7 @@ class EpisodeScreen extends StatefulWidget {
 }
 
 class _EpisodeScreenState extends State<EpisodeScreen> {
-  final TextEditingController _searchController =
-      TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
 
   String _searchQuery = '';
 
@@ -41,14 +39,9 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
   void _navigateToTab(int index) {
     if (index == 2) return;
 
-    final page = index == 0
-        ? const HomeScreen()
-        : const FavoriteScreen();
+    final page = index == 0 ? const HomeScreen() : const FavoriteScreen();
 
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (_) => page),
-    );
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => page));
   }
 
   void _showEpisodeDetail(Episode episode) {
@@ -56,9 +49,7 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: const Color(0xFFFFF8E7),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(18),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
         title: Text(
           episode.name,
           style: const TextStyle(
@@ -72,10 +63,7 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
           children: [
             _detailRow('Kode Episode', episode.episode),
             _detailRow('Tanggal Tayang', episode.airDate),
-            _detailRow(
-              'Jumlah Karakter',
-              '${episode.characterCount} karakter',
-            ),
+            _detailRow('Jumlah Karakter', '${episode.characterCount} karakter'),
           ],
         ),
         actions: [
@@ -173,12 +161,7 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
                     },
                   ),
                 ),
-                Expanded(
-                  child: _buildEpisodeList(
-                    provider,
-                    filteredEpisodes,
-                  ),
-                ),
+                Expanded(child: _buildEpisodeList(provider, filteredEpisodes)),
               ],
             ),
           ),
@@ -191,28 +174,19 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
     );
   }
 
-  Widget _buildEpisodeList(
-    CharacterProvider provider,
-    List<Episode> episodes,
-  ) {
+  Widget _buildEpisodeList(CharacterProvider provider, List<Episode> episodes) {
     if (provider.isLoading && provider.episodes.isEmpty) {
       return const Center(
-        child: CircularProgressIndicator(
-          color: Color(0xFFA3C86D),
-        ),
+        child: CircularProgressIndicator(color: Color(0xFFA3C86D)),
       );
     }
 
-    if (provider.errorMessage != null &&
-        provider.episodes.isEmpty) {
+    if (provider.errorMessage != null && provider.episodes.isEmpty) {
       return Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              provider.errorMessage!,
-              textAlign: TextAlign.center,
-            ),
+            Text(provider.errorMessage!, textAlign: TextAlign.center),
             TextButton(
               onPressed: provider.loadEpisodes,
               child: const Text('Coba Lagi'),
@@ -249,22 +223,19 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
                 padding: const EdgeInsets.all(11),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(14),
-                  border: Border.all(
-                    color: const Color(0xFFDCC6A9),
-                  ),
+                  border: Border.all(color: const Color(0xFFDCC6A9)),
                 ),
                 child: Row(
                   children: [
+                    // Menampilkan ilustrasi TV pixel sebagai ikon episode.
                     Container(
-                      width: 36,
-                      height: 36,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFFCEED6),
-                        borderRadius: BorderRadius.circular(9),
-                      ),
-                      child: const Icon(
-                        Icons.live_tv_outlined,
-                        color: Color(0xFF6B5B4E),
+                      width: 40,
+                      height: 40,
+                      padding: const EdgeInsets.all(2),
+                      child: Image.asset(
+                        'asset/images/TV.png',
+                        fit: BoxFit.contain,
+                        filterQuality: FilterQuality.none,
                       ),
                     ),
                     const SizedBox(width: 12),
@@ -295,10 +266,7 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
                         ],
                       ),
                     ),
-                    const Icon(
-                      Icons.chevron_right,
-                      color: Color(0xFF9B8A7B),
-                    ),
+                    const Icon(Icons.chevron_right, color: Color(0xFF9B8A7B)),
                   ],
                 ),
               ),

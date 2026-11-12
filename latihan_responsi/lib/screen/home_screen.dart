@@ -98,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Hai, ${user?.username ?? 'Pengguna'}! 👋',
+                                  'Hai, ${user?.username ?? 'Pengguna'}!',
                                   style: const TextStyle(
                                     fontFamily: 'Nunito',
                                     fontSize: 19,
