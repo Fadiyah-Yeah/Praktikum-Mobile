@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -30,14 +29,9 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   void _navigateToTab(int index) {
     if (index == 1) return;
 
-    final page = index == 0
-        ? const HomeScreen()
-        : const EpisodeScreen();
+    final page = index == 0 ? const HomeScreen() : const EpisodeScreen();
 
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (_) => page),
-    );
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => page));
   }
 
   @override
@@ -74,33 +68,23 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
           height: 65,
           width: double.infinity,
           child: Image.asset(
-            'asset/images/splash_bg.png',
+            'asset/images/background.png',
             fit: BoxFit.cover,
             alignment: Alignment.topCenter,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 55,
-          child: Row(
-            children: [
-              IconButton(
-                onPressed: () => Navigator.pop(context),
-                icon: const Icon(Icons.arrow_back),
+          child: Center(
+            child: Text(
+              'Favorite',
+              style: TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 21,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF302522),
               ),
-              const Expanded(
-                child: Text(
-                  'Favorite',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 21,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF302522),
-                  ),
-                ),
-              ),
-              const SizedBox(width: 48),
-            ],
+            ),
           ),
         ),
       ],
@@ -192,9 +176,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => DetailScreen(
-                      character: character,
-                    ),
+                    builder: (_) => DetailScreen(character: character),
                   ),
                 );
               },
@@ -204,9 +186,8 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                   await provider.toggleFavorite(character.id);
                 } catch (e) {
                   if (!context.mounted) return;
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(e.toString())),
-                  );
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(content: Text(e.toString())));
                 }
               },
             ),

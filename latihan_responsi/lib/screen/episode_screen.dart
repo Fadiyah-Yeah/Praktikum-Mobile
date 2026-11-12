@@ -140,7 +140,7 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
                       width: double.infinity,
                       height: 100,
                       child: Image.asset(
-                        'asset/images/splash_bg.png',
+                        'asset/images/background.png',
                         fit: BoxFit.cover,
                         alignment: Alignment.topCenter,
                       ),

@@ -69,7 +69,7 @@ class _DetailScreenState extends State<DetailScreen> {
                               width: double.infinity,
                               height: 175,
                               child: Image.asset(
-                                'asset/images/splash_bg.png',
+                                'asset/images/background.png',
                                 fit: BoxFit.cover,
                                 alignment: Alignment.topCenter,
                               ),
