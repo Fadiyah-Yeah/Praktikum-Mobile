@@ -1,6 +1,8 @@
 # Rick & Morty Explorer — SQLite
 
 Run `flutter pub get` then `flutter run`. No `.env`, Supabase, URL, or API key required.
+flutter pub add sqflite
+flutter pub add path
 
 SQLite stores local user accounts, password hashes, usernames, and favorite character IDs.
 Character and episode information comes from the public Rick and Morty API, so internet
